@@ -23,21 +23,24 @@
     FLFakeConfig *fakeConfig = [FLFakeConfig sharedInstance];
     if (fakeConfig.enabled) {
         if (self.delegate) {
-            if ([self.delegate respondsToSelector:@selector(locationManager:didUpdateLocations:)]) {
-                NSArray *locations = @[fakeConfig.location];
-                if (!fequalzero(fakeConfig.delay)) {
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fakeConfig.delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [self.delegate locationManager:self didUpdateLocations:locations];
-                    });
-                } else {
-                    [self.delegate locationManager:self didUpdateLocations:locations];
-                }
+            if (!fequalzero(fakeConfig.delay)) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(fakeConfig.delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self updateLocation:fakeConfig.location];
+                });
             } else {
-                
+                [self updateLocation:fakeConfig.location];
             }
         }
     } else {
         [self fl_startUpdatingLocation];
+    }
+}
+
+- (void)updateLocation:(CLLocation *)location {
+    if ([self.delegate respondsToSelector:@selector(locationManager:didUpdateLocations:)]) {
+        [self.delegate locationManager:self didUpdateLocations:@[location]];
+    } else if ([self.delegate respondsToSelector:@selector(locationManager:didUpdateToLocation:fromLocation:)]) {
+        [self.delegate locationManager:self didUpdateToLocation:location fromLocation:location];
     }
 }
 

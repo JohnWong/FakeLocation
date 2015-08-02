@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--下拉重新定位-->
         <scene sceneID="xcT-5P-R8r">
             <objects>
                 <tableViewController id="YxC-kn-SeL" customClass="FLTableViewController" sceneMemberID="viewController">
@@ -26,7 +26,7 @@
                             <outlet property="delegate" destination="YxC-kn-SeL" id="77T-mY-qwt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Jix-z0-AKk">
+                    <navigationItem key="navigationItem" title="下拉重新定位" id="Jix-z0-AKk">
                         <barButtonItem key="rightBarButtonItem" title="设置" id="aqn-Jw-S7T">
                             <connections>
                                 <segue destination="eTm-J2-KgK" kind="show" id="OMi-Zd-29y"/>
@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="-438" y="-202"/>
         </scene>
-        <!--Settings Controller-->
+        <!--Fake设置-->
         <scene sceneID="ZnQ-fB-aos">
             <objects>
-                <tableViewController id="eTm-J2-KgK" customClass="FLSettingsController" sceneMemberID="viewController">
+                <tableViewController title="Fake设置" id="eTm-J2-KgK" customClass="FLSettingsController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="LMm-IP-ecg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
